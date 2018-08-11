@@ -1,0 +1,232 @@
+<!--
+
+
+
+<?php 
+/*
+$urlPublic = base_url()."assets/";
+$tokenId = "";
+
+if ($this->session != null) {
+	
+	if ($this->session->flashdata('tokenID') != null) {
+		$tokenId = $this->session->flashdata('tokenID');
+	}
+	
+	$numeroTokenExiste = "false";
+	$resetSenhaExiste  = "false";
+	
+	if ($this->session->flashdata('tokenExiste') != null) {
+		if ($this->session->flashdata('tokenExiste') == true) {
+			$numeroTokenExiste = "true";
+		}
+	}
+	
+	if ($this->session->flashdata('senhaTrocada') != null) {
+		if ($this->session->flashdata('senhaTrocada') == true) {
+			$resetSenhaExiste = "true";
+		}
+	}
+	
+}
+
+*/	
+?>
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        
+        <!-- Bootstrap core CSS -->
+<meta name="charset"  charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+{% block stylesheets %}
+<!-- Bootstrap core CSS -->
+<link href="{{ urlThemeAdmin }}/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	
+<!-- Font Awesome -->
+<link href="{{ urlThemeAdmin }}/css/font-awesome.min.css" rel="stylesheet" />
+	
+<!-- Endless -->
+<link href="{{ urlThemeAdmin }}/css/endless.min.css" rel="stylesheet" />
+
+<link href="{{urlScripts}}/css/estilo.css" rel="stylesheet" />
+
+<link href="{{urlScripts}}/css/iconescor.css" rel="stylesheet" />
+{% endblock %}
+<style>
+
+.bodyHomeIndex {
+	margin:0px; 
+	background-image: url('{{urlScripts}}images/background-02.jpg');
+	background-repeat: no-repeat;
+	min-height: 658px;
+	background-size: 100% 100%;
+}
+
+.aguardeColor {
+	color: white;
+}
+</style>
+
+</head>
+
+<body>
+{% block body %}
+<div class="bodyHomeIndex">
+
+</div>
+    <!--
+<input type="hidden" name="tokenExiste" id="tokenExiste" value="<?php echo $numeroTokenExiste; ?>"/>
+<input type="hidden" name="senhaTrocada" id="senhaTrocada" value="<?php echo $resetSenhaExiste; ?>"/>
+    -->
+<div class="login-wrapper">
+
+	<div class="text-center">
+		<h2 class="fadeInUp animation-delay8" style="font-weight:bold">
+			<span class="text-success">Taberna</span> <span style="color:#477CAA; text-shadow:0 1px #fff">Carioca</span>
+		</h2>
+	</div>
+	<div class="login-widget animation-delay1">	
+		<div class="panel panel-default">
+			<div class="panel-heading clearfix">
+				<div class="pull-left">
+					<i class="fa fa-lock fa-lg"></i> Usuário
+				</div>
+
+			</div>
+			<div class="panel-body">
+                            {% if errors %}
+                                <div id="errors" class="alert alert-danger">
+                                    
+                                        {{ errors }}
+                                    
+                                </div>
+                            {% endif %}
+                            <form name="logarForm" action="{{path('login')}}" id="logarForm" class="form-login" method="post">
+                                <div class="form-group">
+                                        <label>Login:</label>
+                                        <input type="text" name="_username" id="username" maxlength="200" class="form-control input-sm bounceIn animation-delay2" />
+                                </div>
+                                <div class="form-group">
+                                        <label>Senha:</label>
+                                        <input type="password" name="_password" id="password" maxlength="16" class="form-control input-sm bounceIn animation-delay4" />
+                                </div>
+
+                                <div class="seperator"></div>
+                                <div class="form-group">
+                                        Esqueceu a senha?<br/>
+                                        <a href="#" id="btnRecuperarSenha">Recuperar Senha</a>
+                                </div>
+
+                                <hr/>
+                                <button type="submit" value="" class="btn btn-success btn-sm bounceIn animation-delay5 pull-right"><i class="fa fa-sign-in"></i> Entrar</button>	
+                            </form>
+			</div>
+		</div><!-- /panel -->
+	</div><!-- /login-widget -->
+</div><!-- /login-wrapper -->
+
+<div class="modal fade" id="modalRecuperarSenha" tabindex="-1" role="dialog" aria-labelledby="modalRecuperarSenha" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="bg-info modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="modalCadastrarLogin">Recuperar Senha</h4>
+      </div>
+      <form name="recuperarSenhaForm" id="recuperarSenhaForm" class="form-horizontal" method="post">
+      <div class="modal-body">
+     	 <div class="form-group">
+				<label class="control-label col-lg-2">Email:</label>
+				<div class="col-lg-6">
+					<input type="text" name="txtRecuperarSenha" maxlength="200" class="form-control input-sm" />
+				</div>
+				<div class="col-lg-4 pull-right">
+		        	<button type="submit" class="btn btn-success btn-sm"><i class="fa fa-plus-circle"></i> Recuperar</button>
+		      	</div><!-- /.col -->
+			</div><!-- /form-group -->
+			<hr/>
+			<div class="form-group">
+				
+		    </div>
+      </div>
+      
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalResetSenha" tabindex="-2" role="dialog" aria-labelledby="modalResetSenha" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="bg-info modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="modalCadastrarNovaSenha">Cadastrar Nova Senha</h4>
+      </div>
+      <form name="resetSenhaForm" id="resetSenhaForm" class="form-horizontal" action="index/resetSenha" method="post">
+      <input type="hidden" name="tokenId" id="tokenId" value="<?php echo $tokenId; ?>"/>
+      <div class="modal-body">
+     	 	<div class="form-group">
+				<label class="control-label col-lg-3">Senha:</label>
+				<div class="col-lg-4">
+					<input type="password" name="txtNovaSenha" id="txtNovaSenha" maxlength="50" class="form-control input-sm" />
+				</div>
+			</div><!-- /form-group -->
+			
+			<div class="form-group">
+				<label class="control-label col-lg-3">Confirmar Senha:</label>
+				<div class="col-lg-4">
+					<input type="password" name="txtRecNovaSenha" maxlength="50" class="form-control input-sm" />
+				</div>
+			</div><!-- /form-group -->
+			
+			<div class="form-group">
+				<div class="col-lg-7 pull-right">
+		        	<button type="submit" class="btn btn-success btn-sm"><i class="fa fa-plus-circle"></i> Ok</button>
+		      	</div><!-- /.col -->
+			</div><!-- /form-group -->
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!--<?php include 'inc.modal.mensagens.php';?>-->
+{% endblock %}
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+    
+<!-- Jquery -->
+<script src="{{ urlThemeAdmin }}/js/jquery-1.11.2.min.js"></script>
+    
+<!-- Bootstrap -->
+<script src="{{ urlThemeAdmin }}/bootstrap/js/bootstrap.min.js"></script>
+   
+<!-- Modernizr -->
+<script src='{{ urlThemeAdmin }}/js/modernizr.min.js'></script>
+   
+<!-- Pace -->
+<script src='{{ urlThemeAdmin }}/js/pace.min.js'></script>
+   
+<!-- Popup Overlay -->
+<script src='{{ urlThemeAdmin }}/js/jquery.popupoverlay.min.js'></script>
+   
+<!-- Slimscroll -->
+<script src='{{ urlThemeAdmin }}/js/jquery.slimscroll.min.js'></script>
+   
+<!-- Cookie -->
+<script src='{{ urlThemeAdmin }}/js/jquery.cookie.min.js'></script>
+
+<!-- Endless -->
+<script src="{{ urlThemeAdmin }}/js/endless/endless.js"></script>
+
+<script src="{{urlScripts}}/js/util/jquery.validate.min.js"></script>
+<script src="{{urlScripts}}/js/validaLogin.js"></script>
+<script src="{{urlScripts}}/js/funcoes.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% if listaFotos != null %}
+
+    <div class="row">
+        <ul>
+            {% for fotos in listaFotos %}
+
+                <li class="col-md-3 col-sm-6 gallery-item format-image">
+                    <div class="grid-item-inner">
+                        <img src="../../web/{{ fotos.foto }}" alt="">
+                        <button onclick="excluirImagem('{{ fotos.id }}');" name="btnExcFoto" id="btnExcFoto" class="btn btn-success btn-sm margin-top-05" type="button">
+                            Excluir
+                        </button>
+                </li>
+
+            {% endfor %}
+
+        </ul>
+    </div>
+
+{% endif %}

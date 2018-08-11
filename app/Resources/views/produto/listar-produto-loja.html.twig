@@ -1,0 +1,91 @@
+{% extends folderEstrutura~'backend-base.html.twig' %}
+
+{% block body %}
+
+    <div id="main-container">
+        <div id="breadcrumb">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="{{ path('principal') }}">Home</a>
+                </li>
+                <li class="active">Administrar Produto da Loja</li>
+            </ul>
+        </div><!--breadcrumb-->
+
+        <div class="grey-container alinhaDireita">
+            <button class="btn btn-success" id="btnModalAssociarProduto">
+                <i class="fa fa-edit fa-lg"></i> Associar Produto
+            </button>
+        </div><!-- /grey-container -->
+        <input type="hidden" value="{{ path('lojaProduto_listar', { "idLoja": idLoja }) }}" id="urlProdutoLoja" />
+        <input type="hidden" value="{{ path('produto_listarAssociar', { "idLoja": idLoja }) }}" id="urlListaProdutoLoja" />
+        <input type="hidden" value="{{ path('produto_associarProdutoLoja') }}" id="urlProdutoAssociar" />
+        <input type="hidden" value="{{ path('produto_desassociarProdutoLoja') }}" id="urlProdutoDesassociar" />
+
+        <div class="padding-md">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="overview">
+                            <div class="row">
+
+                                <!-- COLUNA COM O FORM -->
+                                <div class="col-md-12">
+
+                                    {{ headerDataTable | raw }}
+
+                                    <a href="#" onclick="goBack();" class="btn btn-info pull-right margin-top-10" >
+                                        <i class="fa fa-reply bigger-110"></i>
+                                        Voltar
+                                    </a>
+
+                                </div><!-- /.col -->
+                                <!-- FIM DA COLUNA COM O FORM -->
+
+
+
+                            </div><!-- /.row -->
+                        </div><!-- /tab1 -->
+
+                    </div><!-- /tab-content -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.padding-md -->
+    </div><!-- /main-container -->
+
+    <div class="modal fade" id="modalAssociarProduto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width: 90%;">
+            <div class="modal-content">
+                <div class="bg-info modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalAssociarProdutol">Associar Produto a loja</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+
+                        <!-- COLUNA COM O FORM -->
+                        <div class="col-md-12">
+
+                            <table class="table table-striped table-bordered table-hover datatableProduto" width="100%">
+                                <thead>
+                                <tr>
+                                    <th style="text-align: left;" width="20%">Tipo de Produto</th>
+                                    <th style="text-align: left;" width="25%">Marca</th>
+                                    <th style="text-align: left;" width="20%">Produto</th>
+                                    <th style="text-align: left;" width="50%">Descrição</th>
+                                    <th width="5px" class="removeIconOrder" style="text-align:center;">Ações</th>
+                                </tr>
+                                </thead>
+                            </table>
+
+                        </div><!-- /.col -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

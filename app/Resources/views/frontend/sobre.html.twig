@@ -1,0 +1,28 @@
+{% extends 'frontend-base.html.twig' %}
+
+{% block body %}
+    <div class="page-header smaller parallax custom text-center" style="background-image:url({{ urlThemeWebsite }}/images/page-header-bg.jpg)" data-0="background-position:50% 50%;" data-top-bottom="background-position:50% 100%">
+        <div class="container-fluid">
+            <h1>Sobre Nós</h1>
+        </div><!-- End .container -->
+    </div><!-- End .page-header -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="title dark">Nossa <span class="light text-custom2">História</span></h2>
+
+                {% if conteudo.descricao is defined  %}
+                    {{ conteudo.descricao | raw }}
+                {% endif  %}
+
+            </div><!-- End .col-md-6 -->
+
+            <div class="clearfix mb10 visible-xs visible-sm"></div><!-- margin -->
+
+
+        </div><!-- End .row -->
+    </div><!-- End .container-fluid -->
+
+{% endblock %}
+

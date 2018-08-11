@@ -1,0 +1,77 @@
+<div class="container-fluid">
+    <div class="collapse navbar-collapse" id="main-nav-container">
+        <input type="hidden" name="urlBuscaTipoProdutoPorCategoria" id="urlBuscaTipoProdutoPorCategoria" value="{{ path('produto_buscaTipoProdutoPorCategoria') }}" />
+        <input type="hidden" id="urlEnderecoBusca" value="{{ path('endereco_carregarCidadeSession') }}" />
+        <input type="hidden" id="urlBairroBusca" value="{{ path('endereco_carregarBairroSession') }}" />
+        <form action="{{ path('buscaProdutoPage') }}" method="post" name="buscaProdutoForm" id="buscaProdutoForm" class="form-horizontal" role="form">
+            <div class="row row-no-padding margin-top-05">
+
+            <div class="col-sm-2">
+                <label class="input-desc">Marca</label>
+                <select name="marca" id="marca" class="form-control input-sm">
+                    <option value="" selected="selected">Selecione</option>
+                    {% for marca in listaMarca %}
+                        <option value="{{ marca.id }}">{{ marca.nome }}</option>
+                    {% endfor %}
+                </select>
+
+                <div class="buscaAvancadaShow">
+                    <label class="input-desc">Estado</label>
+                    <select name="slcEstado" id="slcEstado" class="form-control input-sm">
+                        <option value="" selected="selected">Selecione</option>
+                        {% for key, estado in listaEstado %}
+                            <option value="{{ key }}">{{ estado }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+            </div><!-- End .col-sm-6 -->
+
+            <div class="col-sm-3">
+                <label class="input-desc">Categoria</label>
+                <select name="categoria" id="categoria" class="form-control input-sm">
+                    <option value="" selected="selected">Selecione</option>
+                    {% for categoria in listaCategoria %}
+                        <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
+                    {% endfor %}
+                </select>
+
+                <div class="buscaAvancadaShow">
+                    <label class="input-desc">Cidade</label>
+                    <select name="slcCidade" id="slcCidade" class="form-control input-sm">
+                        <option value="" selected="selected">Selecione</option>
+                    </select>
+                </div>
+
+            </div><!-- End .col-sm-6 -->
+
+            <div class="col-sm-4 row-no-padding">
+                <label class="input-desc">Produto</label>
+                <select name="tipoProduto" id="tipoProduto" class="form-control input-sm">
+                    <option value="" selected="selected">Selecione</option>
+                </select>
+
+                <div class="buscaAvancadaShow">
+                    <label class="input-desc">Bairro</label>
+                    <select name="slcBairro" id="slcBairro" class="form-control input-sm">
+                        <option value="" selected="selected">Selecione</option>
+                    </select>
+                </div>
+            </div><!-- End .col-sm-6 -->
+
+
+
+            <div class="col-sm-2 margin-top-25">
+                <input type="submit" value="Buscar" class="btn btn-sm btn-blue" />
+
+                <a href="#" id="showBuscaAvancada">
+                    [ Busca Avançada ]
+                </a>
+                <a href="#" id="showBuscaNormal">
+                    [ Busca Normal ]
+                </a>
+            </div><!-- End .col-sm-6 -->
+        </div><!-- End .row -->
+        </form>
+    </div><!-- /.navbar-collapse -->
+</div><!-- End .container-fluid -->

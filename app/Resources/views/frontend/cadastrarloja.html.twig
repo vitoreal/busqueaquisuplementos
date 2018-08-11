@@ -1,0 +1,119 @@
+{% extends 'frontend-base.html.twig' %}
+
+{% block body %}
+    <div class="page-header smaller parallax custom text-center" style="background-image:url({{ urlThemeWebsite }}/images/page-header-bg.jpg)" data-0="background-position:50% 50%;" data-top-bottom="background-position:50% 100%">
+        <div class="container-fluid">
+            <h1>Painel de Controle</h1>
+        </div><!-- End .container -->
+    </div><!-- End .page-header -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h2>Cadastrar Loja</h2>
+                            </div>
+                            <div class="row">
+                                {% include 'frontend/menuadmin.html.twig' %}
+                            </div>
+                            <div class="mb20"></div><!-- space -->
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-8 col-sm-6">
+                                <form action="#" method="post" name="cadlojaForm" id="cadlojaForm" class="form-horizontal" role="form">
+                                 <input type="hidden" id="actionForm" value="{{ path('loja_new') }}" />
+                                    <input type="hidden" id="urlEndereco" value="{{ path('endereco_carregarCidade') }}" />
+                                    <input type="hidden" id="urlInicioRedirect" value="{{ path('loja_adminwebsite') }}" />
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Nome</label>
+                                        <input type="text" class="form-control input-sm" maxlength="45" id="nome" name="nome" placeholder="Nome" />
+                                    </div><!-- End .col-md-6 -->
+                                    <div class="col-md-6">
+                                        <label>Razão Social</label>
+                                        <input type="text" class="form-control input-sm" maxlength="45" id="razaoSocial" name="razaoSocial" placeholder="Razão Social" />
+                                    </div><!-- End .col-md-6 -->
+
+                                    <div class="clearfix mb40 visible-xs"></div>
+
+                                    <div class="col-md-6">
+                                        <label>CNPJ</label>
+                                        <input type="text" class="form-control input-sm maskCnpj" maxlength="19" id="cnpj" name="cnpj" placeholder="cnpj" />
+                                    </div><!-- End .col-md-6 -->
+
+                                    <div class="col-md-3">
+                                        <label>Telefone</label>
+                                        <input type="text" class="form-control input-sm maskTelefone" id="telefone1" maxlength="15" name="telefone1" placeholder="Telefone" />
+                                    </div><!-- End .col-md-6 -->
+                                    <div class="col-md-3">
+                                        <label>Celular</label>
+                                        <input type="text" class="form-control input-sm maskTelefone" id="telefone2" maxlength="15" name="telefone2" placeholder="Celular" />
+                                    </div><!-- End .col-md-6 -->
+                                    <div class="col-md-3">
+                                        <label>CEP</label>
+                                        <input type="text" name="cep" id="cep" class="form-control input-sm maskCep" maxlength="9" placeholder="Cep" />
+                                    </div><!-- End .col-md-6 -->
+                                    <div class="col-md-3">
+                                        <label>Estado</label>
+                                        <select id="estado" name="estado" class="form-control input-sm camposEndereco">
+                                            <option value="" selected="selected">Selecione</option>
+                                            {% for estado in listaEstado %}
+                                                <option value="{{ estado.sigla }}">{{ estado.estado }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div><!-- End .col-md-3 -->
+                                    <div class="col-md-6">
+                                        <label>Cidade</label>
+                                        <select id="cidade" name="cidade" class="form-control input-sm camposEndereco">
+                                            <option value="" selected="selected">Selecione</option>
+                                        </select>
+                                    </div><!-- End .col-md-3 -->
+
+                                    <div class="col-md-6">
+                                        <label>Endereço</label>
+                                        <input type="text" name="endereco" id="endereco" class="form-control input-sm" maxlength="300" placeholder="Endereço" />
+                                    </div><!-- End .col-md-6 -->
+                                    <div class="col-md-6">
+                                        <label>Bairro</label>
+                                        <input type="text" name="bairro" id="bairro" class="form-control input-sm" maxlength="100" placeholder="Bairro" />
+                                    </div><!-- End .col-md-6 -->
+                                    <div class="col-md-3">
+                                        <label>Número</label>
+                                        <input type="text" class="form-control input-sm" id="numero" maxlength="6" name="numero" placeholder="Número" />
+                                    </div><!-- End .col-md-6 -->
+                                    <div class="col-md-3">
+                                        <label>Complemento</label>
+                                        <input type="text" name="complemento" id="complemento" class="form-control input-sm" maxlength="45" placeholder="Complemento" />
+                                    </div><!-- End .col-md-6 -->
+                                    <div class="col-md-12">
+                                        <label>Descrição</label>
+                                        <textarea id="editor1" name="descricao" class="form-control"></textarea>
+                                    </div><!-- End .col-md-6 -->
+                                </div><!-- End .row -->
+                                <div class="mb10"></div><!-- margin -->
+
+                                <input type="submit" class="btn btn-custom min-width pull-right" value="Registrar" />
+                                </form>
+                            </div><!-- End .col-md-8 -->
+
+                        </div><!-- End .row -->
+
+
+                    </div><!-- End .col-sm-12 -->
+                </div><!-- End .row -->
+
+                <div class="mb40"></div><!-- space -->
+
+            </div><!-- End .col-md-6 -->
+            <div class="clearfix mb10 visible-xs visible-sm"></div><!-- margin -->
+
+        </div><!-- End .row -->
+    </div><!-- End .container-fluid -->
+
+{% endblock %}
+
+

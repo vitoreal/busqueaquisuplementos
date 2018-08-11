@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+        <!-- Bootstrap core CSS -->
+        <link href="{{ urlThemeAdmin }}bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Slider -->
+	<link href="{{ urlThemeAdmin }}css/slider.css" rel="stylesheet">
+
+	<!-- Font Awesome -->
+	<link href="{{ urlThemeAdmin }}css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Color box -->
+	<link href="{{ urlThemeAdmin }}css/colorbox/colorbox.css" rel="stylesheet">
+
+	<!-- Pace -->
+	<link href="{{ urlThemeAdmin }}css/pace.css" rel="stylesheet">
+
+	<!-- Endless -->
+	<link href="{{ urlThemeAdmin }}css/endless.min.css" rel="stylesheet">
+	<link href="{{ urlThemeAdmin }}css/endless-skin.css" rel="stylesheet">
+	<link href="{{ urlScripts }}libs/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet"/>
+
+	<link href="{{ urlScripts }}css/estilo.css" rel="stylesheet">
+
+	<link href="{{ urlScripts }}css/iconescor.css" rel="stylesheet" />
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        {% endblock %}
+    </head>
+    <body class="overflow-hidden">
+	<!-- Overlay Div -->
+	<div id="overlay" class="transparent"></div>
+
+	<div id="wrapper" class="preload">
+		<div id="top-nav" class="skin-6 fixed">
+			<div class="brand"></span>
+				<span class="text-toggle"> Admin</span>
+			</div><!-- /brand -->
+			<button type="button" class="navbar-toggle pull-left" id="sidebarToggle">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<button type="button" class="navbar-toggle pull-left hide-menu" id="menuToggle">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+
+		</div><!-- /top-nav-->
+        {% include ':admin-estrutura:menu.html.twig' %}
+        {% block body %}{% endblock %}
+
+        </div><!-- /wrapper -->
+
+	<!-- Modal -->
+	<div class="modal fade" id="modalConfirmation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="bg-info modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Mensagem</h4>
+				</div>
+				<div class="modal-body">
+					<i class="iconecor-modal-question pull-left"></i> <h5 id="txtModalDinamico"></h5>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default modalClose" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" id="confirmationModalOK">Ok</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="modalMensagem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="bg-info modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h3 class="modal-title" id="myModalLabel">Mensagem</h3>
+				</div>
+				<div id="txtMensagemModal" class="modal-body">
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="mensagemModalOk">Ok</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<a href="#" id="scroll-to-top" class="hidden-print"><i class="fa fa-chevron-up"></i></a>
+
+	<!-- Logout confirmation -->
+	<div class="custom-popup width-100" id="logoutConfirm">
+		<div class="padding-md">
+			<h4 class="m-top-none"> Deseja sair do sistema?</h4>
+		</div>
+
+		<div class="text-center">
+			<a class="btn btn-success m-right-sm" href="{{logout_path('main')}}">Sim</a>
+			<a class="btn btn-danger logoutConfirm_close">Não</a>
+		</div>
+	</div>
+
+        {% block javascripts %}
+
+
+            <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+	<!-- Jquery -->
+	<script src="{{ urlThemeAdmin }}js/jquery-1.11.2.min.js"></script>
+
+	<!-- Bootstrap -->
+        <script src="{{ urlThemeAdmin }}bootstrap/js/bootstrap.min.js"></script>
+
+  	<!-- Datatable -->
+	<script src="{{urlScripts}}js/util/jquery.dataTables.js"></script>
+
+	<script src="{{urlScripts}}js/util/jquery.dataTables.bootstrap.js"></script>
+
+	<script src="{{urlScripts}}js/util/jquery.pagination.js"></script>
+
+	<!-- CKEDITOR -->
+	<script src="{{urlScripts}}libs/ckeditor/ckeditor.js" charset="utf-8"></script>
+
+   	<script src='{{ urlThemeAdmin }}js/wysihtml5-0.3.0.min.js'></script>
+	<script src='{{ urlThemeAdmin }}js/uncompressed/bootstrap-wysihtml5.js'></script>
+
+	<!-- holder -->
+	<script src='{{ urlThemeAdmin }}js/uncompressed/holder.js'></script>
+
+	<!-- Colorbox -->
+	<script src='{{ urlThemeAdmin }}js/jquery.colorbox.min.js'></script>
+
+	<!-- Modernizr -->
+	<script src='{{ urlThemeAdmin }}js/modernizr.min.js'></script>
+
+	<!-- Pace -->
+	<script src='{{ urlThemeAdmin }}js/pace.min.js'></script>
+
+	<!-- Popup Overlay -->
+	<script src='{{ urlThemeAdmin }}js/jquery.popupoverlay.min.js'></script>
+
+	<!-- Slimscroll -->
+	<script src='{{ urlThemeAdmin }}js/jquery.slimscroll.min.js'></script>
+
+	<!-- Cookie -->
+	<script src='{{ urlThemeAdmin }}js/jquery.cookie.min.js'></script>
+
+	<!-- Chosen -->
+	<script src='{{ urlThemeAdmin }}js/chosen.jquery.min.js'></script>
+
+	<!-- Mask-input -->
+	<script src='{{ urlThemeAdmin }}js/jquery.maskedinput.min.js'></script>
+
+	<!-- Datepicker -->
+	<script src='{{urlScripts}}libs/jquery-ui-1.11.4.custom/jquery-ui.js'></script>
+	<script src='{{urlScripts}}js/util/jquery.datepicker.pt-BR.js'></script>
+
+	<!-- Timepicker -->
+	<script src='{{ urlThemeAdmin }}js/bootstrap-timepicker.min.js'></script>
+
+	<!-- Slider -->
+	<script src='{{ urlThemeAdmin }}js/bootstrap-slider.min.js'></script>
+
+	<!-- Tag input -->
+	<script src='{{ urlThemeAdmin }}js/jquery.tagsinput.min.js'></script>
+
+	<!-- Endless -->
+	<script src="{{ urlThemeAdmin }}js/endless/endless_form.js"></script>
+	<script src="{{ urlThemeAdmin }}js/endless/endless.js"></script>
+
+    <script src="{{urlScripts}}js/util/jquery.validate.min.js"></script>
+
+    <script src="{{urlScripts}}js/util/bootstrap-filestyle.js"></script>
+
+    <!-- Funcoes -->
+    <script src="{{urlScripts}}js/util/php.default.js"></script>
+    <script src="{{urlScripts}}js/funcoes.js"></script>
+    <script src="{{urlScripts}}js/util/jquery.validator.method.js"></script>
+			<script src="{{urlScripts}}js/util/jquery.maskplugin.js"></script>
+
+    <script src="{{urlScripts}}js/util/extension.js"></script>
+
+
+	{% if validaJS is defined  %}
+
+            {% for nomeArquivo in validaJS %}
+			<script src="{{urlScripts}}js/{{ nomeArquivo }}.js"></script>
+            {% endfor %}
+
+	{% endif %}
+
+
+        {% endblock %}
+    </body>
+</html>

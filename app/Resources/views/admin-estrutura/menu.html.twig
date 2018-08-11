@@ -1,0 +1,85 @@
+<aside class="fixed skin-6">
+    <div class="sidebar-inner scrollable-sidebar">
+        <div class="size-toggle">
+            <a class="btn btn-sm" id="sizeToggle">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="btn btn-sm pull-right logoutConfirm_open"  href="#logoutConfirm">
+                <i class="fa fa-power-off" data-toggle="tooltip" data-placement="left" title="Sair"></i>
+            </a>
+        </div><!-- /size-toggle -->
+        <div class="user-block clearfix">
+            <div class="detail">
+                <strong>{{ app.user.nome }}</strong>
+                <div class="seperator"></div>
+                <a class="btn btn-success btn-xs m-bottom-sm" href="{{ path('usuario_formeditsenha', {'id': app.user.id}) }}">Alterar Senha</a>
+
+            </div>
+        </div><!-- /user-block -->
+
+        <div class="main-menu">
+            <ul>
+                <li>
+                    <a href="#">
+						<span class="menu-icon">
+							<i class="fa fa-home fa-lg"></i>
+						</span>
+                        <span class="text">Home</span>
+                        <span class="menu-hover"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('conteudo_index') }}">
+						<span class="menu-icon">
+							<i class="fa fa-home fa-lg"></i>
+						</span>
+                        <span class="text">Conteúdo</span>
+                        <span class="menu-hover"></span>
+                    </a>
+                </li>
+
+                <li class="openable">
+                    <a href="#">
+						<span class="menu-icon">
+							<i class="fa fa-briefcase fa-lg"></i>
+						</span>
+                        <span class="text">Produtos</span>
+                        <span class="menu-hover"></span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="{{ path('produto_index') }}">Administrar Produto</a></li>
+                        <li><a href="{{ path('categoria_index') }}">Categoria</a></li>
+                        <li><a href="{{ path('tipoproduto_index') }}">Tipo de Produto</a></li>
+                        <li><a href="{{ path('sabor_index') }}">Sabor</a></li>
+                        <li><a href="{{ path('marca_index') }}">Marca</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{{ path('cliente_index') }}">
+						<span class="menu-icon">
+							<i class="fa fa-user fa-lg"></i>
+						</span>
+                        <span class="text">Clientes</span>
+                        <span class="menu-hover"></span>
+                    </a>
+                </li>
+
+                    <li>
+                        <a href="{{ path('usuario_index') }}">
+						<span class="menu-icon">
+							<i class="fa fa-cogs fa-lg"></i>
+						</span>
+                            <span class="text">Usuário</span>
+                            <span class="menu-hover"></span>
+                        </a>
+                    </li>
+
+            </ul>
+
+        </div><!-- /main-menu -->
+
+    </div><!-- /sidebar-inner scrollable-sidebar -->
+</aside>
+

@@ -1,0 +1,35 @@
+@CHARSET "ISO-8859-1";
+.has-error {
+    color: #FF9E02;
+}
+.asterisco {
+    color: red;
+    font-weight: bold;
+}
+.help-block {
+    color: red;
+    display: block;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    border-color: indianred;
+}
+
+.margin-top-05 { margin-top: 0.5em; }
+.margin-top-10 { margin-top: 1.0em; }
+.margin-top-15 { margin-top: 1.5em; }
+.margin-top-20 { margin-top: 2.0em; }
+.margin-top-25 { margin-top: 2.5em; }
+.margin-top-30 { margin-top: 3.0em; }
+
+
+.row-no-padding > [class*="col-"] {
+    padding-left: 5px;  !important;
+    padding-right: 5px; !important;
+    padding-bottom: 0px; !important;
+}
+
+
+.datatable {
+    word-wrap: break-word;
+    table-layout: fixed;
+}

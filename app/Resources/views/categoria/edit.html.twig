@@ -1,0 +1,72 @@
+{% extends folderEstrutura~'backend-base.html.twig' %}
+
+{% block body %}
+
+
+    <div id="main-container">
+        <div id="breadcrumb">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="{{ path('principal') }}">Home</a>
+                </li>
+                <li>Administrar Categoria</li>
+                <li class="active">Alterar</li>
+            </ul>
+        </div><!--breadcrumb-->
+
+        <div class="padding-md">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="overview">
+                            <div class="row">
+
+                                <!-- COLUNA COM O FORM -->
+                                <div class="col-md-12">
+
+                                    (<span class="asterisco">*</span>) Campos de preenchimento obrigatório <br /> <br />
+
+                                    <form action="#" method="post" name="editForm" id="editForm" class="form-horizontal" role="form">
+                                        <input type="hidden" name="idEdit" id="idEdit" value="{{ categoria.id }}" />
+                                        <input type="hidden" name="actionForm" id="actionForm" value="../edit" />
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="nome"><span class="asterisco">*</span> Nome </label>
+
+                                            <div class="col-sm-4">
+                                                <input name="nome" type="text" id="nome" value="{{ categoria.nome }}" class="form-control" maxlength="200" />
+                                            </div>
+                                        </div>
+
+                                        <div class="clearfix form-actions">
+                                            <div class="col-md-offset-4 col-md-6">
+
+                                                <a href="{{ path('categoria_index') }}" class="btn btn-info" >
+                                                    <i class="fa fa-reply bigger-110"></i>
+                                                    Voltar
+                                                </a>
+                                                &nbsp;
+                                                <button name="btnCadastrar" id="btnCadastrar" class="btn btn-success" type="submit">
+                                                    <i class="fa fa-check bigger-110"></i>
+                                                    Salvar
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div><!-- /.col -->
+                                <!-- FIM DA COLUNA COM O FORM -->
+
+
+                            </div><!-- /.row -->
+                        </div><!-- /tab1 -->
+
+                    </div><!-- /tab-content -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.padding-md -->
+    </div><!-- /main-container -->
+
+{% endblock %}

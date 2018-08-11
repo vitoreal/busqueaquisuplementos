@@ -1,0 +1,81 @@
+{% extends folderEstrutura~'backend-base.html.twig' %}
+
+{% block body %}
+
+    <div id="main-container">
+        <div id="breadcrumb">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="{{ path('principal') }}">Home</a>
+                </li>
+                <li>Administrar Usuário</li>
+                <li class="active">Alterar Senha</li>
+            </ul>
+        </div><!--breadcrumb-->
+
+        <div class="padding-md">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="overview">
+                            <div class="row">
+
+                                <!-- COLUNA COM O FORM -->
+                                <div class="col-md-12">
+
+                                    (<span class="asterisco">*</span>) Campos de preenchimento obrigatório <br /> <br />
+
+                                    <form action="#" method="post" name="usuarioForm" id="usuarioForm" class="form-horizontal" role="form">
+                                        <input type="hidden" name="idEdit" id="idEdit" value="{{ idUser }}" />
+                                        <input type="hidden" name="actionForm" id="actionForm" value="../edit-senha" />
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="senha"><span class="asterisco">*</span> Senha </label>
+
+                                            <div class="col-sm-4">
+                                                <input name="senha" type="password" id="senha"  class="form-control" maxlength="20" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="resenha"><span class="asterisco">*</span> Repita a Senha </label>
+
+                                            <div class="col-sm-4">
+                                                <input name="resenha" type="password" id="resenha" class="form-control" maxlength="20" />
+                                            </div>
+                                        </div>
+
+                                        <div class="clearfix form-actions">
+                                            <div class="col-md-offset-4 col-md-6">
+
+                                                <a href="#" onclick="goBack();" class="btn btn-info" >
+                                                    <i class="fa fa-reply bigger-110"></i>
+                                                    Voltar
+                                                </a>
+                                                &nbsp;
+                                                <button name="btnCadastrar" id="btnCadastrar" class="btn btn-success" type="submit">
+                                                    <i class="fa fa-check bigger-110"></i>
+                                                    Alterar Senha
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div><!-- /.col -->
+                                <!-- FIM DA COLUNA COM O FORM -->
+
+
+                            </div><!-- /.row -->
+                        </div><!-- /tab1 -->
+
+                    </div><!-- /tab-content -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.padding-md -->
+    </div><!-- /main-container -->
+
+
+
+{% endblock %}

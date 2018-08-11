@@ -1,0 +1,84 @@
+{% extends 'frontend-base.html.twig' %}
+
+{% block body %}
+    <div class="page-header smaller parallax custom text-center" style="background-image:url({{ urlThemeWebsite }}/images/page-header-bg.jpg)" data-0="background-position:50% 50%;" data-top-bottom="background-position:50% 100%">
+        <div class="container-fluid">
+            <h1>Painel de Controle</h1>
+        </div><!-- End .container -->
+    </div><!-- End .page-header -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>Minha Loja</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            {% include 'frontend/menuadmin.html.twig' %}
+                        </div>
+                        <div class="mb20"></div><!-- space -->
+                        <div class="table-responsive">
+
+                            <input  type="hidden" value="{{ path('cliente_listarProdutoCliente', {'idLoja': idLoja}) }}" id="urlClienteProdutoLoja" />
+                            <div class="col-md-12">
+
+                                {{ headerDataTable | raw }}
+
+                                <a href="#" onclick="goBack();" class="btn btn-info pull-right margin-top-10" >
+                                    <i class="fa fa-reply bigger-110"></i>
+                                    Voltar
+                                </a>
+
+                            </div><!-- /.col -->
+                            </table>
+                        </div><!-- End .table-responsive -->
+                    </div><!-- End .col-sm-12 -->
+                </div><!-- End .row -->
+
+                <div class="mb40"></div><!-- space -->
+
+
+
+            </div><!-- End .col-md-6 -->
+
+            <div class="clearfix mb10 visible-xs visible-sm"></div><!-- margin -->
+
+            <div class="modal fade" id="openModalAlterarPreco" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+                <form name="alterarPrecoForm" action="#" id="alterarPrecoForm" class="form-login" method="post">
+                    <input type="hidden" id="actionFormAlterarPreco" value="{{ path('produto_alterarPrecoProduto') }}" />
+                    <input type="hidden" name="idLoja" id="idLoja" value="" />
+                    <input type="hidden" name="idProduto" id="idProduto" value="" />
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
+                                <h3 class="modal-title" id="myModalLabel1">Alterar Preço</h3>
+                            </div><!-- End .modal-header -->
+                            <div class="modal-body">
+
+                                <div class="form-group">
+                                    <label for="preco" class="form-label">Preço<span class="required">*</span></label>
+                                    <input type="text" name="preco" id="preco" maxlength="9" class="form-control money">
+                                </div><!-- End .form-group -->
+
+
+                            </div><!-- End .modal-body -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-black" data-dismiss="modal">Fechar</button>
+                                <button type="submit" id="btnModalAlterarPreco" class="btn btn-custom">Salvar</button>
+                            </div><!-- End .modal-footer -->
+                        </div><!-- End .modal-content -->
+                    </div><!-- End .modal-dialog -->
+                </form>
+            </div><!-- End .modal -->
+
+
+        </div><!-- End .row -->
+    </div><!-- End .container-fluid -->
+
+{% endblock %}
+

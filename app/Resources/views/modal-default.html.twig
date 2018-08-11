@@ -1,0 +1,85 @@
+<div class="modal fade" id="openModalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+    <form name="logarForm" id="logarForm" action="{{ path('login') }}" class="form-login" method="post">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h3 class="modal-title" id="myModalLabel1">Login Form</h3>
+                </div><!-- End .modal-header -->
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="email2" class="form-label">Login<span class="required">*</span></label>
+                        <input type="text" name="_username" class="form-control" placeholder="Login">
+                    </div><!-- End .form-group -->
+                    <div class="form-group">
+                        <label for="password2" class="form-label">Senha<span class="required">*</span></label>
+                        <input type="password" name="_password" class="form-control" placeholder="Senha">
+                    </div><!-- End .form-group -->
+                    <div class="form-group">
+                        <input type="checkbox" id="remember_me" name="remember_me" checked /> Relembrar!
+                    </div><!-- End .form-group -->
+
+                </div><!-- End .modal-body -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-black" data-dismiss="modal">Fechar</button>
+                    <button type="submit" id="loginModalOK" class="btn btn-custom">Entrar</button>
+                </div><!-- End .modal-footer -->
+            </div><!-- End .modal-content -->
+        </div><!-- End .modal-dialog -->
+    </form>
+</div><!-- End .modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="modalConfirmation" tabindex="-1" role="dialog" aria-labelledby="myModalLabelMsg" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="bg-info modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabelMsg">Mensagem</h4>
+            </div>
+            <div class="modal-body">
+                <i class="iconecor-modal-question pull-left"></i> <h5 id="txtModalDinamico"></h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default modalClose" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" id="confirmationModalOK">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalMensagem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="bg-info modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title" id="myModalLabel">Mensagem</h3>
+            </div>
+            <div id="txtMensagemModal" class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="mensagemModalOk">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalLogout" tabindex="-1" role="dialog" aria-labelledby="myModalLabelMsg" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="bg-info modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabelMsg">Mensagem</h4>
+            </div>
+            <div class="modal-body">
+                <i class="iconecor-modal-question pull-left"></i> <h5>Deseja sair do sistema?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default modalClose" data-dismiss="modal">Fechar</button>
+                <a class="btn btn-primary" href="{{logout_path('main')}}">Sim</a>
+            </div>
+        </div>
+    </div>
+</div>

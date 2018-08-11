@@ -1,0 +1,56 @@
+{% extends 'frontend-base.html.twig' %}
+
+{% block body %}
+  <div class="page-header smaller parallax custom text-center" style="background-image:url({{ urlThemeWebsite }}/images/page-header-bg.jpg)" data-0="background-position:50% 50%;" data-top-bottom="background-position:50% 100%">
+    <div class="container-fluid">
+      <h1>Contato</h1>
+    </div><!-- End .container -->
+  </div><!-- End .page-header -->
+
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8 col-sm-6">
+        <h2 class="title dark">Fale <span class="light text-custom2">Conosco</span></h2>
+
+          {% if conteudo.descricao is defined  %}
+              {{ conteudo.descricao | raw }}
+          {% endif  %}
+
+        <form action="#" method="post" id="contact-form">
+          <div class="row">
+            <div class="col-md-6">
+              <label>Nome</label>
+              <input type="text" class="form-control" id="contactname" name="contactname" placeholder="Nome" required>
+            </div><!-- End .col-md-6 -->
+            <div class="col-md-6">
+              <label>Email</label>
+              <input type="email" class="form-control" id="contactemail" name="contactemail" placeholder="Email" required>
+            </div><!-- End .col-md-6 -->
+          </div><!-- End .row -->
+          <div class="row">
+            <div class="col-md-6">
+              <label>Assunto</label>
+              <input type="text" class="form-control" id="contactsubject" name="contactsubject" placeholder="Assunto">
+            </div><!-- End .col-md-6 -->
+          </div><!-- End .row -->
+
+          <div class="row">
+            <div class="col-md-12">
+              <label>Messagem</label>
+              <textarea class="form-control" rows="6" id="contactmessage" name="contactmessage" placeholder="Messagem" required></textarea>
+            </div><!-- End .col-md-12 -->
+          </div><!-- End .row -->
+
+          <div class="mb10"></div><!-- margin -->
+
+          <input type="submit" class="btn btn-custom min-width" data-loading-text="Enviar Mensagem..." value="Enviar Mensagem">
+        </form>
+      </div><!-- End .col-md-8 -->
+
+    </div><!-- End .row -->
+  </div><!-- End .container-fluid -->
+
+
+{% endblock %}
+

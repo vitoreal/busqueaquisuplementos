@@ -1,0 +1,284 @@
+{% extends folderEstrutura~'backend-base.html.twig' %}
+
+{% block body %}
+
+
+    <div id="main-container">
+        <div id="breadcrumb">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="{{ path('principal') }}">Home</a>
+                </li>
+                <li>Administrar Produto</li>
+                <li class="active">Alterar</li>
+            </ul>
+        </div><!--breadcrumb-->
+
+        <div class="padding-md">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="overview">
+                            <div class="row">
+
+                                <!-- COLUNA COM O FORM -->
+                                <div class="col-md-12">
+
+                                    (<span class="asterisco">*</span>) Campos de preenchimento obrigatório <br /> <br />
+
+                                    <form action="#" method="post" name="editForm" id="editForm" class="form-horizontal" role="form">
+                                        <input type="hidden" name="idEdit" id="idEdit" value="{{ produto.id }}" />
+                                        <input type="hidden" name="actionForm" id="actionForm" value="{{ path('produto_addUpdate') }}" />
+                                        <input type="hidden" name="idTipoProduto" id="idTipoProduto" value="{{ idTipoProduto }}" />
+                                        <input type="hidden" name="urlBuscaTipoProdutoPorCategoria" id="urlBuscaTipoProdutoPorCategoria" value="{{ path('produto_buscaTipoProdutoPorCategoria') }}" />
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="categoria"><span class="asterisco">*</span> Categoria </label>
+                                            <div class="col-sm-4">
+                                                <select name="categoria" id="categoria" class="form-control">
+                                                    <option value="" selected="selected">Selecione</option>
+                                                    {% for categoria in listaCategoria %}
+
+                                                        {% if categoria.id == categoriaSelecionada %}
+                                                            {% set selected = 'selected="selected"' %}
+                                                        {% else %}
+                                                            {% set selected = '' %}
+                                                        {% endif %}
+
+                                                        <option value="{{ categoria.id }}" {{ selected }}>{{ categoria.nome }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="tipoProduto"><span class="asterisco">*</span> Tipo de Produto </label>
+                                            <div class="col-sm-4">
+                                                <select id="tipoProduto" name="tipoProduto" class="form-control">
+                                                    <option value="" selected="selected">Selecione</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="marca"><span class="asterisco">*</span> Marca </label>
+                                            <div class="col-sm-4">
+                                                <select name="marca" id="marca" class="form-control">
+                                                    <option value="" selected="selected">Selecione</option>
+                                                    {% for marca in listaMarca %}
+
+                                                        {% if marca.id == produto.marca.id %}
+                                                            {% set selected = 'selected="selected"' %}
+                                                        {% else %}
+                                                            {% set selected = '' %}
+                                                        {% endif %}
+
+                                                        <option value="{{ marca.id }}" {{ selected }}>{{ marca.nome }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="nome"><span class="asterisco">*</span> Nome </label>
+
+                                            <div class="col-sm-4">
+                                                <input name="nome" type="text" id="nome" value="{{ produto.nome }}" class="form-control" maxlength="200" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="sabor"> Sabor </label>
+                                            <div class="col-sm-3">
+                                                <select name="sabor" id="sabor" class="form-control">
+                                                    <option value="" selected="selected">Selecione</option>
+                                                    {% for sabor in listaSabor %}
+
+                                                        {% if sabor.id == produto.sabor.id %}
+                                                            {% set selected = 'selected="selected"' %}
+                                                        {% else %}
+                                                            {% set selected = '' %}
+                                                        {% endif %}
+                                                        <option value="{{ sabor.id }}" {{ selected }}>{{ sabor.nome }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="quatidade">Quatidade </label>
+
+                                            <div class="col-sm-4">
+                                                <input name="quatidade" type="text" value="{{ produto.quatidade }}" id="quatidade" class="form-control" maxlength="3" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="peso">Peso </label>
+
+                                            <div class="col-sm-4">
+                                                <input name="peso" type="text" id="peso" value="{{ produto.peso }}" class="form-control" maxlength="3" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="genero">Gênero </label>
+
+                                            <div class="col-sm-2">
+                                                <select name="genero" id="genero" class="form-control">
+
+                                                    {% set selectedMas = '' %}
+                                                    {% set selectedFem = '' %}
+                                                    {% set selectedUnis = '' %}
+                                                    {% set selectedVazio = '' %}
+
+                                                    {% if produto.genero == 'Masculino' %}
+                                                        {% set selectedMas = 'selected="selected"' %}
+                                                    {% elseif produto.genero == 'Feminino' %}
+                                                        {% set selectedFem = 'selected="selected"' %}
+                                                    {% elseif produto.genero == 'Unissex' %}
+                                                        {% set selectedUnis = 'selected="selected"' %}
+                                                    {% else %}
+                                                        {% set selectedVazio = 'selected="selected"' %}
+                                                    {% endif %}
+
+                                                    <option value="" {{ selectedVazio }}>Selecione</option>
+                                                    <option value="Masculino" {{ selectedMas }}>Masculino</option>
+                                                    <option value="Feminino" {{ selectedFem }}>Feminino</option>
+                                                    <option value="Unissex" {{ selectedUnis }}>Unissex</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="forma">Forma </label>
+
+                                            <div class="col-sm-2">
+                                                <select name="forma" id="forma" class="form-control">
+
+                                                    {% set selectedPo = '' %}
+                                                    {% set selectedLiq = '' %}
+                                                    {% set selectedComp = '' %}
+                                                    {% set selectedVazio = '' %}
+
+                                                    {% if produto.forma == 'Pó' %}
+                                                        {% set selectedPo = 'selected="selected"' %}
+                                                    {% elseif produto.forma == 'Líquida' %}
+                                                        {% set selectedLiq = 'selected="selected"' %}
+                                                    {% elseif produto.forma == 'Comprimido' %}
+                                                        {% set selectedComp = 'selected="selected"' %}
+                                                    {% else %}
+                                                        {% set selectedVazio = 'selected="selected"' %}
+                                                    {% endif %}
+
+
+                                                    <option value="" {{ selectedVazio }}>Selecione</option>
+                                                    <option value="Líquida" {{ selectedLiq }}>Líquida</option>
+                                                    <option value="Pó" {{ selectedPo }}>Pó</option>
+                                                    <option value="Comprimido" {{ selectedComp }}>Comprimido</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="gluten">Glúten </label>
+
+                                            <div class="col-sm-2">
+                                                <select name="gluten" id="gluten" class="form-control">
+
+                                                    {% if produto.gluten == 'Sim' %}
+                                                        <option value="">Selecione</option>
+                                                        <option value="Sim" selected="selected">Sim</option>
+                                                        <option value="Não">Não</option>
+                                                    {% elseif produto.gluten == 'Não' %}
+                                                        <option value="">Selecione</option>
+                                                        <option value="Sim">Sim</option>
+                                                        <option value="Não" selected="selected">Não</option>
+                                                    {% else %}
+                                                        <option value="" selected="selected">Selecione</option>
+                                                        <option value="Sim">Sim</option>
+                                                        <option value="Não">Não</option>
+                                                    {% endif %}
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="lactose">Lactose </label>
+
+                                            <div class="col-sm-2">
+                                                <select name="lactose" id="lactose" class="form-control">
+                                                    {% if produto.lactose == 'Sim' %}
+                                                        <option value="">Selecione</option>
+                                                        <option value="Sim" selected="selected">Sim</option>
+                                                        <option value="Não">Não</option>
+                                                    {% elseif produto.lactose == 'Não' %}
+                                                        <option value="">Selecione</option>
+                                                        <option value="Sim">Sim</option>
+                                                        <option value="Não" selected="selected">Não</option>
+                                                    {% else %}
+                                                        <option value="" selected="selected">Selecione</option>
+                                                        <option value="Sim">Sim</option>
+                                                        <option value="Não">Não</option>
+                                                    {% endif %}
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="validade">Validade </label>
+
+                                            <div class="col-sm-4">
+                                                <input name="validade" type="text" value="{{ produto.validade }}" id="validade" class="form-control" maxlength="45" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="recomendacao_uso">Recomendação de Uso </label>
+
+                                            <div class="col-sm-8">
+                                                <textarea rows="8" cols="100" name="recomendacao_uso" id="recomendacao_uso" maxlength="500">{{ produto.recomendacaoUso }}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="importante">Importante </label>
+
+                                            <div class="col-sm-8">
+                                                <textarea rows="8" cols="100" name="importante" id="importante" maxlength="1000">{{ produto.importante }}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="descricao"><span class="asterisco">*</span> Descrição </label>
+
+                                            <div class="col-sm-8">
+                                                <textarea rows="8" cols="100" id="descricao" name="descricao" maxlength="2000">{{ produto.descricao }}</textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="clearfix form-actions">
+                                            <div class="col-md-offset-4 col-md-6">
+
+                                                <a href="{{ path('produto_index') }}" class="btn btn-info" >
+                                                    <i class="fa fa-reply bigger-110"></i>
+                                                    Voltar
+                                                </a>
+                                                &nbsp;
+                                                <button name="btnCadastrar" id="btnCadastrar" class="btn btn-success" type="submit">
+                                                    <i class="fa fa-check bigger-110"></i>
+                                                    Salvar
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div><!-- /.col -->
+                                <!-- FIM DA COLUNA COM O FORM -->
+
+
+                            </div><!-- /.row -->
+                        </div><!-- /tab1 -->
+
+                    </div><!-- /tab-content -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.padding-md -->
+    </div><!-- /main-container -->
+
+{% endblock %}

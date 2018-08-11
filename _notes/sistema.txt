@@ -1,0 +1,39 @@
+----------------------------------------------------
+--------- WEBSITE
+----------------------------------------------------
+
+- recuperação de senha
+- Senha não pode ser menor que 8 caracteres
+- Envio do formulário de contato
+- Busca do produto
+- Listagem do Produto
+- Layout da página Inicial
+- Verificar links social (Facebook, Instagram e Youtube)
+- Verificar Imagens do site
+
+
+----------------------------------------------------
+--------- ADMIN CLIENTE
+----------------------------------------------------
+
+- Desenvolver botão para solicitar ativação da loja
+- Visualizar produto associado a loja
+
+
+----------------------------------------------------
+--------- ADMIN ADMINISTRADOR
+----------------------------------------------------
+
+- Acertar layout onde está localizado o botão de alterar senha
+- Administrar Produto
+        - Cadastrar / Alterar / Excluir produto
+
+- Clientes
+        - Enviar senha por email ao alterar
+        - Deletar cliente
+        - Visualizar produto da loja
+        - Associar produto a loja
+
+- Produto
+    - Cadastrar, Alterar e Excluir
+

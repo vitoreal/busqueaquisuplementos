@@ -1,0 +1,213 @@
+{% extends folderEstrutura~'backend-base.html.twig' %}
+
+{% block body %}
+
+
+    <div id="main-container">
+        <div id="breadcrumb">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="{{ path('principal') }}">Home</a>
+                </li>
+                <li>Administrar Loja</li>
+                <li class="active">Alterar</li>
+            </ul>
+        </div><!--breadcrumb-->
+
+        <div class="padding-md">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="overview">
+                            <div class="row">
+
+                                <!-- COLUNA COM O FORM -->
+                                <div class="col-md-12">
+
+                                    (<span class="asterisco">*</span>) Campos de preenchimento obrigatório <br /> <br />
+
+                                    <form action="#" method="post" name="cadlojaForm" id="cadlojaForm" class="form-horizontal" role="form">
+                                        <input type="hidden" name="idEdit" id="idEdit" value="{{ loja.id }}" />
+                                        <input type="hidden" name="actionForm" id="actionForm" value="{{ path('loja_edit') }}" />
+                                        <input type="hidden" name="idCidadeAlterar" id="idCidadeAlterar" value="{{ loja.endereco.cidade.cidade }}" />
+                                        <input type="hidden" id="urlEndereco" value="{{ path('endereco_carregarCidade') }}" />
+                                        <input type="hidden" id="urlInicioRedirect" value="{{ path('cliente_listarLoja', { "idCliente": loja.usuario.id }) }}" />
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="qtdproduto"><span class="asterisco">*</span> Quantidade de Produto </label>
+                                            <div class="col-sm-2">
+                                                <select name="qtdproduto" id="qtdproduto" class="form-control">
+
+                                                    {% for i in range(0, 25, 5) %}
+
+                                                        {% if loja.qtdproduto == i  %}
+                                                            {% set selected = 'selected="selected"' %}
+                                                        {% else %}
+                                                            {% set selected = '' %}
+                                                        {% endif %}
+
+                                                        <option value="{{ i }}" {{ selected }}>{{ i }}</option>
+
+                                                    {% endfor %}
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="status"><span class="asterisco">*</span> Status </label>
+                                            <div class="col-sm-4">
+                                                <select name="status" id="status" class="form-control">
+
+                                                    {% for status in listaStatus %}
+
+                                                        {% if status.id == loja.status.id %}
+                                                            {% set selected = 'selected="selected"' %}
+                                                        {% else %}
+                                                            {% set selected = '' %}
+                                                        {% endif %}
+
+                                                        <option value="{{ status.id }}" {{ selected }}>{{ status.nome }}</option>
+                                                    {% endfor %}
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="nome"><span class="asterisco">*</span> Nome </label>
+
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" value="{{ loja.nome }}" maxlength="45" id="nome" name="nome" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="razaoSocial"><span class="asterisco">*</span> Razão Social </label>
+
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" value="{{ loja.razaoSocial }}" maxlength="45" id="razaoSocial" name="razaoSocial" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="cnpj"><span class="asterisco">*</span> CNPJ </label>
+
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control maskCnpj" value="{{ loja.cnpj }}" maxlength="19" id="cnpj" name="cnpj" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="telefone1"><span class="asterisco">*</span> Telefone </label>
+
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control maskTelefone" value="{{ loja.telefone1 }}" maxlength="15" id="telefone1" name="telefone1" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="telefone2">Celular </label>
+
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control maskTelefone" value="{{ loja.telefone2 }}" maxlength="15" id="telefone2" name="telefone2" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="cep">CEP </label>
+
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control maskCep" value="{{ loja.endereco.cep }}" maxlength="9" id="cep" name="cep" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="estado">Estado </label>
+
+                                            <div class="col-sm-4">
+                                                <select id="estado" name="estado" class="form-control camposEndereco">
+                                                    {% for estado in listaEstado %}
+
+                                                        {% if estado.id == loja.endereco.cidade.estado.id %}
+                                                            {% set selected = 'selected="selected"' %}
+                                                        {% else %}
+                                                            {% set selected = '' %}
+                                                        {% endif %}
+
+                                                        <option value="{{ estado.sigla }}" {{ selected }}>{{ estado.estado }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="cidade">Cidade </label>
+
+                                            <div class="col-sm-4">
+                                                <select id="cidade" name="cidade" class="form-control input-sm camposEndereco">
+                                                    <option value="" selected="selected">Selecione</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="endereco"><span class="asterisco">*</span> Endereço </label>
+
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" value="{{ loja.endereco.endereco }}" maxlength="300" id="endereco" name="endereco" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="bairro"><span class="asterisco">*</span> Bairro </label>
+
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" value="{{ loja.endereco.bairro }}" maxlength="100" id="bairro" name="bairro" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="numero">Número </label>
+
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" value="{{ loja.endereco.numero }}" maxlength="6" id="numero" name="numero" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="complemento">Complemento </label>
+
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" value="{{ loja.endereco.complemento }}" maxlength="45" id="complemento" name="complemento" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="descricao">Descrição </label>
+
+                                            <div class="col-sm-6">
+                                                <textarea id="editor1" name="descricao" class="form-control">{{ loja.descricao }}</textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="clearfix form-actions">
+                                            <div class="col-md-offset-4 col-md-6">
+
+                                                <a href="#" onclick="goBack();" class="btn btn-info" >
+                                                    <i class="fa fa-reply bigger-110"></i>
+                                                    Voltar
+                                                </a>
+                                                &nbsp;
+                                                <button name="btnCadastrar" id="btnCadastrar" class="btn btn-success" type="submit">
+                                                    <i class="fa fa-check bigger-110"></i>
+                                                    Salvar
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div><!-- /.col -->
+                                <!-- FIM DA COLUNA COM O FORM -->
+
+
+                            </div><!-- /.row -->
+                        </div><!-- /tab1 -->
+
+                    </div><!-- /tab-content -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.padding-md -->
+    </div><!-- /main-container -->
+
+{% endblock %}

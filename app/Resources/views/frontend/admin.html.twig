@@ -1,0 +1,71 @@
+{% extends 'frontend-base.html.twig' %}
+
+{% block body %}
+    <div class="page-header smaller parallax custom text-center" style="background-image:url({{ urlThemeWebsite }}/images/page-header-bg.jpg)" data-0="background-position:50% 50%;" data-top-bottom="background-position:50% 100%">
+        <div class="container-fluid">
+            <h1>Painel de Controle</h1>
+        </div><!-- End .container -->
+    </div><!-- End .page-header -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>Minha Loja</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            {% include 'frontend/menuadmin.html.twig' %}
+                        </div>
+                        <div class="mb20"></div><!-- space -->
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-condensed">
+                                <thead>
+                                <tr>
+                                    <th style="text-align: left;" width="15%">Status</th>
+                                    <th style="text-align: left;" width="20%">Nome</th>
+                                    <th style="text-align: left;">Razão Social</th>
+                                    <th style="text-align: left;" width="25%">Endereço</th>
+                                    <th style="text-align: left;" width="12%">Telefones</th>
+                                    <th style="text-align: center;" width="12%">Ação</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for loja in listaLoja %}
+                                    <tr>
+                                        <td>{{ loja.status.nome }}</td>
+                                        <td>{{ loja.nome }}</td>
+                                        <td>{{ loja.razaoSocial }}</td>
+                                        <td>{{ loja.endereco.endereco }}, {{ loja.endereco.cidade.cidade }}, {{ loja.endereco.cidade.estado.sigla }}</td>
+                                        <td>{{ loja.telefone1 }} <br /> {{ loja.telefone2 }}</td>
+                                        <td style="text-align: center;">
+                                            <a href="{{ path('cliente_listarProdutoLoja', { "idLoja": loja.id }) }}"><i class="fa fa-briefcase fa-lg" title="Produtos"></i></a>
+                                            <a href="formLojaEdit/{{ loja.id }}"><i class="fa fa-pencil fa-lg" title="Alterar"></i></a>
+
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div><!-- End .table-responsive -->
+                    </div><!-- End .col-sm-12 -->
+                </div><!-- End .row -->
+
+                <div class="mb40"></div><!-- space -->
+
+
+
+            </div><!-- End .col-md-6 -->
+
+            <div class="clearfix mb10 visible-xs visible-sm"></div><!-- margin -->
+
+
+        </div><!-- End .row -->
+    </div><!-- End .container-fluid -->
+
+{% endblock %}
+
